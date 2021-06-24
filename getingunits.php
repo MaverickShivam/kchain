@@ -1,0 +1,53 @@
+<?php
+if(isset($_GET["ingid"]))
+{
+    $conn=mysqli_connect("localhost","u369938951_newra_intern","intern001","u369938951_intern_db");
+    $sql="select * from ingredients where ing_id=".$_GET["ingid"];
+    $result=$conn->query($sql);
+    $row=$result->fetch_assoc();
+    $jsonarray=array();
+    if($row["gm/cup"]>0)
+    {
+        array_push($jsonarray,["cup",$row["gm/cup"]]);
+    }
+    if($row["gm/teaspoon"]>0)
+    {
+        array_push($jsonarray,["teaspoon",$row["gm/teaspoon"]]);
+    }
+    if($row["gm/tablespoon"]>0)
+    {
+        array_push($jsonarray,["tablespoon",$row["gm/tablespoon"]]);
+    }
+    if($row["gm/inch"]>0)
+    {
+        array_push($jsonarray,["inch",$row["gm/inch"]]);
+    }
+    if($row["gm/ml"]>0)
+    {
+        array_push($jsonarray,["ml",$row["gm/ml"]]);
+    }
+    if($row["gm/small"]>0)
+    {
+        array_push($jsonarray,["small",$row["gm/small"]]);
+    }
+    if($row["gm/medium"]>0)
+    {
+        array_push($jsonarray,["medium",$row["gm/medium"]]);
+    }
+    if($row["gm/large"]>0)
+    {
+        array_push($jsonarray,["large",$row["gm/large"]]);
+    }
+    if($row["gm/piece"]>0)
+    {
+        array_push($jsonarray,["piece",$row["gm/piece"]]);
+    }
+    if($row["gm/clove"]>0)
+    {
+        array_push($jsonarray,["clove",$row["gm/clove"]]);
+    }
+    echo json_encode($jsonarray);
+}
+
+
+?>
